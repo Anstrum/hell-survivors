@@ -24,6 +24,7 @@ function love.keypressed(key)
 end
 
 function love.update(dt)
+	client.udp:settimeout(1 / 60)
 	if currentGameState == GameStates.MENU then
 		menu.update(dt)
 	end
