@@ -1,6 +1,6 @@
 debugSystem = require("core/debugSystem")
 client = require("core/network/client")
-
+json = require("core/dkjson")
 
 GameStates = {}
 	GameStates.MENU = "MENU"

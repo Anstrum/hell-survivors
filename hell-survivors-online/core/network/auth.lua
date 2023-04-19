@@ -9,7 +9,7 @@ local auth = {}
 -- sending token to server --
 -----------------------------
 
-function auth.sendToken()
+function auth.sendToken(udp)
 	local token = auth.getLocalToken()
 	if not token then
 		auth.token = auth.getClipboard()
@@ -27,18 +27,23 @@ end
 -- ways to obtain token --
 --------------------------
 
+function auth.getToken()
+	auth.getLocalToken()
+	if auth.token == nil then
+		auth.getClipboard()
+	end
+end
 function auth.getLocalToken()
 	local file = io.open("user.gconfig")
 	if not file then
-		return nil
+		auth.token = nil
 	end
 	auth.token = file:read("*all")
 	io.close(file)
 end
 function auth.getClipboard()
-	return love.system.getClipboardText()
+	auth.token = love.system.getClipboardText()
 end
-
 
 
 
@@ -46,7 +51,7 @@ end
 -- getting token answer --
 --------------------------
 
-function auth.getTokenAnswer()
+function auth.getTokenAnswer(udp)
 	answer = udp:receive()
 	if answer == "connected" then
 		auth.saveToken()
