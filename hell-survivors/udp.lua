@@ -7,18 +7,14 @@ local json = require("dkjson")
 
 function network.load()
 	network.udp = network.socket.udp()
-	network.udp:settimeout(0)
-	network.udp:setpeername(network.address, network.port)
 end
 
 function network.sendData(data)
-	data = json.encode(data)
-	network.udp:send(data)
+	print("data sent: "..data)
+	network.udp:sendto(data, network.address, network.port)
 end
 
 function network.update(dt)
-	data = network.udp:receive()
-	print(data)
 end
 
 
