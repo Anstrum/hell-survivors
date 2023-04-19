@@ -2,11 +2,16 @@ debugSystem = require("core/debugSystem")
 client = require("core/network/client")
 json = require("core/dkjson")
 
+
+
+
 GameStates = {}
 	GameStates.MENU = "MENU"
 	GameStates.GAME = "GAME"
 
 currentGameState = GameStates.MENU
+
+
 
 
 screen = {}
@@ -17,6 +22,8 @@ screen = {}
 		love.window.setTitle(screen.title)
 		love.window.setMode(screen.width, screen.height)
 	end
+
+
 
 
 mouse = {}
@@ -37,14 +44,17 @@ mouse = {}
 	end
 
 
+
+
 font = {}
 	font.list = {}
 	function font.load()
 		font.addFont("default.otf", "default", 15)
+		font.addFont("default.otf", "title", 40)
 	end
 	function font.addFont(file, name, size)
 		local myFont = {}
-			myFont.font = love.graphics.newFont("ressources/"..file, 15)
+			myFont.font = love.graphics.newFont("ressources/"..file, size)
 			myFont.name = name
 			myFont.size = size
 		table.insert(font.list, myFont)

@@ -1,7 +1,7 @@
 local auth = {}
 
 	auth.token = nil
-
+	auth.connected = false
 
 
 
@@ -10,13 +10,6 @@ local auth = {}
 -----------------------------
 
 function auth.sendToken(udp)
-	local token = auth.getLocalToken()
-	if not token then
-		auth.token = auth.getClipboard()
-	end
-	if auth.token == nil then
-		return
-	end
 	udp:send(auth.token)
 end
 
@@ -35,8 +28,9 @@ function auth.getToken()
 end
 function auth.getLocalToken()
 	local file = io.open("user.gconfig")
-	if not file then
+	if file == nil then
 		auth.token = nil
+		return
 	end
 	auth.token = file:read("*all")
 	io.close(file)
@@ -52,10 +46,12 @@ end
 --------------------------
 
 function auth.getTokenAnswer(udp)
-	answer = udp:receive()
+	local answer = udp:receive()
 	if answer == "connected" then
 		auth.saveToken()
 		auth.connected = true
+	else
+		auth.connected = false
 	end
 end
 

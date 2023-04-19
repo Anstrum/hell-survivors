@@ -9,20 +9,21 @@ function love.load()
 	client.load()
 	screen.update()
 	font.load()
-	debugSystem.addLog(DebugType.INFO, "Game initialized. Entering menu..", false)
+	menu.load()
+
 	client.connect()
+	debugSystem.addLog(DebugType.INFO, "Game initialized. Entering menu..", false)
 end
 
 function love.keypressed(key)
 	debugSystem.keypressed(key)
+
+	if currentGameState == GameStates.MENU then
+		menu.keyPressed(key)
+	end
 end
 
 function love.update(dt)
-	if not client.connected then
-		client.connect()
-	end
-
-
 	if currentGameState == GameStates.MENU then
 		menu.update(dt)
 	end

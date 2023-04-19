@@ -11,6 +11,7 @@ client.connected = false
 
 function client.load()
 	client.udp = client.socket.udp()
+	client.udp:settimeout(0.5)
 	client.udp:setpeername(client.address, client.port)
 end
 
