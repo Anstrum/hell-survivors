@@ -1,4 +1,12 @@
 debugSystem = require("core/debugSystem")
+client = require("core/network/client")
+
+
+GameStates = {}
+	GameStates.MENU = "MENU"
+	GameStates.GAME = "GAME"
+
+currentGameState = GameStates.MENU
 
 
 screen = {}
@@ -9,6 +17,7 @@ screen = {}
 		love.window.setTitle(screen.title)
 		love.window.setMode(screen.width, screen.height)
 	end
+
 
 mouse = {}
 	mouse.x = 0
@@ -25,4 +34,27 @@ mouse = {}
 		mouse.angle = math.atan2(xDiff, yDiff)
 		mouse.angle = math.deg(mouse.angle)
 		mouse.angle = 0 - mouse.angle + 90
+	end
+
+
+font = {}
+	font.list = {}
+	function font.load()
+		font.addFont("default.otf", "default", 15)
+	end
+	function font.addFont(file, name, size)
+		local myFont = {}
+			myFont.font = love.graphics.newFont("ressources/"..file, 15)
+			myFont.name = name
+			myFont.size = size
+		table.insert(font.list, myFont)
+	end
+	function font.getFont(name)
+		for i = 1, #font.list do
+			local myFont = font.list[i]
+			if myFont.name == name then
+				return myFont
+			end
+		end
+		return font.list[1]
 	end
