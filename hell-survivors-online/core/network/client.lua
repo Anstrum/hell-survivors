@@ -10,13 +10,14 @@ client.lobbySearch = require("core/network/lobbySearch")
 
 
 client.connected = false
-client.inLobby = false
+client.matching = false
+client.LobbyId = nil
 client.playerCount = 0
 
 
 function client.load()
 	client.udp = client.socket.udp()
-	client.udp:settimeout(0.5)
+	client.udp:settimeout(1 / 120)
 	client.udp:setpeername(client.address, client.port)
 end
 

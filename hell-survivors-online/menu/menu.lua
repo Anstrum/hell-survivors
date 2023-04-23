@@ -53,7 +53,7 @@ local menu = {}
 		-------------------------------
 
 		love.graphics.setColor(colors.white)
-		local statusText = love.graphics.newText(menu.statusFont, "Statut: ")
+		local statusText = love.graphics.newText(menu.statusFont, "Status: ")
 		local statusSpace = 5
 		local statusStatus = nil
 		if client.connected then
@@ -70,6 +70,33 @@ local menu = {}
 		end
 		love.graphics.draw(statusStatus, screen.width / 2 - ( statusText:getWidth() + statusStatus:getWidth() + statusSpace) / 2 + statusText:getWidth(), screen.height / 4 - 40)
 
+
+
+		--------------------------
+		-- drawing lobby status --
+		--------------------------
+
+		love.graphics.setColor(colors.white)
+		local lobbyText = love.graphics.newText(menu.statusFont, "Lobby: ")
+		local lobbySpace = 5
+		local lobbyLobby = nil
+		if client.inLobby then
+			if client.matching then
+				lobbyLobby = love.graphics.newText(menu.statusFont, "Matching")
+			else
+				lobbyLobby = love.graphics.newText(menu.statusFont, "Ready")
+			end
+		else
+			lobbyLobby = love.graphics.newText(menu.statusFont, "Game Found")
+		end
+
+		love.graphics.draw(statusText, screen.width / 2 - (statusText:getWidth() + statusStatus:getWidth() + statusSpace) / 2, screen.height / 4 - 40)
+		if client.connected then
+			love.graphics.setColor(colors.green)
+		else
+			love.graphics.setColor(colors.red)
+		end
+		love.graphics.draw(statusStatus, screen.width / 2 - ( statusText:getWidth() + statusStatus:getWidth() + statusSpace) / 2 + statusText:getWidth(), screen.height / 4 - 40)
 
 
 		---------------------------------

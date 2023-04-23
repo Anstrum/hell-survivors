@@ -24,17 +24,18 @@ function love.keypressed(key)
 end
 
 function love.update(dt)
-	client.udp:settimeout(0.5)
 	if currentGameState == GameStates.MENU then
-		menu.update(dt)function game.mousepressed(x, y, click) 
-	player.mousepressed(x, y, click)
-end
+		menu.update(dt)
 	end
 	if currentGameState == GameStates.GAME then
 		game.update(dt)
 	end
 	mouse.update()
 	debugSystem.update(dt)
+end
+
+function game.mousepressed(x, y, click) 
+	player.mousepressed(x, y, click)
 end
 
 function love.draw()
