@@ -39,5 +39,4 @@ function client.searchLobby()
 	client.playerCount = client.lobbySearch.playerCount
 end
 
-
 return client
