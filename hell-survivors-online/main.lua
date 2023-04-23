@@ -16,7 +16,7 @@ function love.load()
 end
 
 function love.keypressed(key)
-	debugSystem.keypressed(key)
+	debugSystem.keyPressed(key)
 
 	if currentGameState == GameStates.MENU then
 		menu.keyPressed(key)
@@ -24,9 +24,11 @@ function love.keypressed(key)
 end
 
 function love.update(dt)
-	client.udp:settimeout(1 / 60)
+	client.udp:settimeout(0.5)
 	if currentGameState == GameStates.MENU then
-		menu.update(dt)
+		menu.update(dt)function game.mousepressed(x, y, click) 
+	player.mousepressed(x, y, click)
+end
 	end
 	if currentGameState == GameStates.GAME then
 		game.update(dt)

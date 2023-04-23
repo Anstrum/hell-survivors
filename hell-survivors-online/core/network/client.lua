@@ -4,9 +4,14 @@ client.socket = require("socket")
 client.address = "192.168.1.22"
 client.port = 12345
 client.udp = nil 
+
 client.auth = require("core/network/auth")
+client.lobbySearch = require("core/network/lobbySearch")
+
 
 client.connected = false
+client.inLobby = false
+client.playerCount = 0
 
 
 function client.load()
@@ -21,17 +26,17 @@ function client.connect()
 	if client.auth.token == nil then
 		return
 	end
-
 	client.auth.sendToken(client.udp)
 	client.auth.getTokenAnswer(client.udp)
 	client.connected = client.auth.connected
 end
 
-
-
-
-
-
+function client.searchLobby()
+	client.lobbySearch.startSearch(client.udp, client.auth.token)
+	client.lobbySearch.getSearchAnswer(client.udp)
+	client.inLobby = client.lobbySearch.inLobby
+	client.playerCount = client.lobbySearch.playerCount
+end
 
 
 return client

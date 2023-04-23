@@ -1,8 +1,7 @@
 debugSystem = require("core/debugSystem")
 client = require("core/network/client")
 json = require("core/dkjson")
-
-
+require("core/colors")
 
 
 GameStates = {}

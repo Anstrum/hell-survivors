@@ -13,6 +13,9 @@ function map.load()
 end
 
 function map.update(dt)
+	print("Map x: "..map.relativeX, "Map y: "..map.relativeY)
+
+
 	if not map.deleted then
 		map.radius = map.radius - map.reduceSpeed * dt
 	end

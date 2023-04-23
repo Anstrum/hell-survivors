@@ -27,8 +27,12 @@ local menu = {}
 
 
 	function menu.keyPressed(key)
-		if key == "space" and not client.connected then
-			client.connect()
+		if key == "space" then
+			if not client.connected then
+				client.connect()
+			else
+				client.searchLobby()
+			end
 		end
 	end
 
@@ -39,7 +43,7 @@ local menu = {}
 		-- drawing title --
 		-------------------
 
-		love.graphics.setColor(0.67, 0.176, 0.055, 1)
+		love.graphics.setColor(colors.menu.title)
 		love.graphics.draw(menu.title, screen.width / 2 - menu.title:getWidth() * menu.titleScale / 2, 50 - menu.title:getHeight() * menu.titleScale / 2, 0, menu.titleScale, menu.titleScale)
 		
 
@@ -48,7 +52,7 @@ local menu = {}
 		-- drawing connection status --
 		-------------------------------
 
-		love.graphics.setColor(1, 1, 1, 1)
+		love.graphics.setColor(colors.white)
 		local statusText = love.graphics.newText(menu.statusFont, "Statut: ")
 		local statusSpace = 5
 		local statusStatus = nil
@@ -60,9 +64,9 @@ local menu = {}
 
 		love.graphics.draw(statusText, screen.width / 2 - (statusText:getWidth() + statusStatus:getWidth() + statusSpace) / 2, screen.height / 4 - 40)
 		if client.connected then
-			love.graphics.setColor(0, 1, 0, 1)
+			love.graphics.setColor(colors.green)
 		else
-			love.graphics.setColor(1, 0, 0, 1)
+			love.graphics.setColor(colors.red)
 		end
 		love.graphics.draw(statusStatus, screen.width / 2 - ( statusText:getWidth() + statusStatus:getWidth() + statusSpace) / 2 + statusText:getWidth(), screen.height / 4 - 40)
 
@@ -77,18 +81,22 @@ local menu = {}
 			local txt3 = love.graphics.newText(menu.statusTextFont, "Une fois connecté, le token sera automatiquement envoyé dans ton presse papier.")
 
 
-			love.graphics.setColor(0.67, 0.176, 0.055, 1)
+			love.graphics.setColor(colors.menu.title)
 			love.graphics.rectangle("fill", screen.width / 2 - txt3:getWidth() / 2 - 20, screen.height / 3 - 20, txt3:getWidth() + 40, txt3:getHeight() + 80, 10)
-			love.graphics.setColor(1/255 * 207, 1/255 * 159, 1/255 * 14, 1)
+			love.graphics.setColor(colors.menu.border)
 			love.graphics.rectangle("line", screen.width / 2 - txt3:getWidth() / 2 - 20, screen.height / 3 - 20, txt3:getWidth() + 40, txt3:getHeight() + 80, 10)
 			love.graphics.rectangle("line", screen.width / 2 - txt3:getWidth() / 2 - 21, screen.height / 3 - 21, txt3:getWidth() + 42, txt3:getHeight() + 82, 10)
 
 
-			love.graphics.setColor(1, 1, 1, 1)
+			love.graphics.setColor(colors.white)
 			love.graphics.draw(txt1, screen.width / 2 - txt1:getWidth() / 2, screen.height / 3)
 			love.graphics.draw(txt2, screen.width / 2 - txt2:getWidth() / 2, screen.height / 3 + 20)
 			love.graphics.draw(txt3, screen.width / 2 - txt3:getWidth() / 2, screen.height / 3 + 40)
 		else
+
+			
+
+
 			local txt1 = love.graphics.newText(menu.statusTextFont, "Maintenant que vous êtes connecté, vous pouvez trouver une partie.")
 			local txt2 = love.graphics.newText(menu.statusTextFont, "Appuyez sur espace quand vous serez prêt à rejoindre un serveur.")
 			local txt3 = love.graphics.newText(menu.statusTextFont, "Voici une explication rapide sur le principe du jeu:")
@@ -100,15 +108,15 @@ local menu = {}
 			local txt9 = love.graphics.newText(menu.statusTextFont, "Bon courage ! Vous en aurez besoins !")
 
 
-			love.graphics.setColor(0.67, 0.176, 0.055, 1)
+			love.graphics.setColor(colors.menu.title)
 			love.graphics.rectangle("fill", screen.width / 2 - txt7:getWidth() / 2 - 20, screen.height / 3 - 20, txt7:getWidth() + 40, txt3:getHeight() + 220, 10)
 
-			love.graphics.setColor(1/255 * 207, 1/255 * 159, 1/255 * 14, 1)
+			love.graphics.setColor(colors.menu.border)
 			love.graphics.rectangle("line", screen.width / 2 - txt7:getWidth() / 2 - 20, screen.height / 3 - 20, txt7:getWidth() + 40, txt3:getHeight() + 220, 10)
 			love.graphics.rectangle("line", screen.width / 2 - txt7:getWidth() / 2 - 21, screen.height / 3 - 21, txt7:getWidth() + 42, txt3:getHeight() + 222, 10)
 
 
-			love.graphics.setColor(1, 1, 1, 1)
+			love.graphics.setColor(colors.white)
 
 			love.graphics.draw(txt1, screen.width / 2 - txt1:getWidth() / 2, screen.height / 3)
 			love.graphics.draw(txt2, screen.width / 2 - txt2:getWidth() / 2, screen.height / 3 + 20)

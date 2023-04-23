@@ -7,18 +7,11 @@ DebugType.ERROR = "ERROR"
 
 local debugSystem = {}
 
+	debugSystem.toggleKey = "f1"
 	debugSystem.showDebug = false
 	debugSystem.debugList = {}
 	debugSystem.displayedDebugList = {}
 
-function debugSystem.keypressed(key)
-	if key == "f1" then
-		debugSystem.toggle()
-	end
-	if key == "f3" then
-		debugSystem.export()
-	end
-end
 
 function debugSystem.addLog(header, content, toDisplay)
 	local myLog = {}
@@ -54,6 +47,11 @@ function debugSystem.export()
 	end
 
 	io.close(file)
+end
+function debugSystem.keyPressed(key)
+	if key == debugSystem.toggleKey then
+		debugSystem.toggle()
+	end
 end
 
 

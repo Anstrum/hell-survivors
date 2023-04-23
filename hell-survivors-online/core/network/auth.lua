@@ -10,7 +10,7 @@ local auth = {}
 -----------------------------
 
 function auth.sendToken(udp)
-	local body = [[{"requestType":"connection","token":"]]..auth.token..[[""}]]
+	local body = [[{"requestType":"connection","token":"]]..auth.token..[["}]]
 	udp:send(body)
 end
 

@@ -120,7 +120,6 @@ function player.takeDamage(amount)
 	if player.hp < 0 then
 		player.hp = 0
 	end
-	debugSystem.addLog(DebugType.INFO, "Player took "..amount.." damage", false)
 end
 
 
