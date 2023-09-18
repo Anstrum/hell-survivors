@@ -14,8 +14,8 @@ gameManager = {}
 		if gameManager.gameState == "menu" then
 			menu.load()
 		end
-		if gameManager.gameState == "characterSelect" then
-			characterSelect.load()
+		if gameManager.gameState == "game" then
+			--game.load()
 		end
 	end
 
@@ -24,8 +24,8 @@ gameManager = {}
 		if gameManager.gameState == "menu" then
 			menu.update(dt)
 		end
-		if gameManager.gameState == "characterSelect" then
-			characterSelect.update(dt)
+		if gameManager.gameState == "game" then
+			--game.update(dt)
 		end
 	end
 
@@ -33,6 +33,9 @@ gameManager = {}
 	function gameManager.keypressed(key)
 		if gameManager.gameState == "menu" then
 			menu.keypressed(key)
+		end
+		if gameManager.gameState == "game" then
+			--game.keypressed(key)
 		end
 	end
 
@@ -45,16 +48,20 @@ gameManager = {}
 		if gameManager.gameState == "menu" then
 			menu.draw()
 		end
-		if gameManager.gameState == "characterSelect" then
-			characterSelect.draw()
+		if gameManager.gameState == "game" then
+			--game.draw()
 		end
 	end
 
 
-	function gameManager.selectCharacter()
-		if gameManager.gameState == "menu" then
-			menu.unload()
-		end
-		gameManager.gameState = "characterSelect"
+	function gameManager.startGame()
+		gameManager.gameState = "game"
+		menu.unload()
+		gameManager.load()
+	end
+
+	function gameManager.goToMenu()
+		gameManager.gameState = "menu"
+		--game.unload()
 		gameManager.load()
 	end

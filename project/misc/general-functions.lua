@@ -33,7 +33,7 @@ logger = {}
 		local myText
 		myText = os.date("%x").." - "..os.date("%X").." | "..content.."\n"
 		table.insert(logger.logs, myText)
-		if toPrint then
+		if toPrint and logger.isActive then
 			logger.currentMessage = content
 			logger.messageDuration = 2
 		end
@@ -72,12 +72,17 @@ logger = {}
 	end
 
 colors = {}
-	function colors.set(color)
-		love.graphics.setColor(color)
+	function colors.set(color, alpha)
+		local adjustedColor = {color[1], color[2], color[3], alpha or color[4] or 1}
+		love.graphics.setColor(adjustedColor)
 	end
 	colors.red = {1, 0, 0, 1}
 	colors.green = {0, 1, 0, 1}
 	colors.blue = {0, 0, 1, 1}
 	colors.white = {1, 1, 1, 1}
 	colors.black = {0, 0, 0, 1}
+	
 	colors.log = {0, 1, 0.8}
+	colors.title = {0.8, 0.8, 0.8, 1}
+	colors.menuBackground = {0.0, 0.0, 0.3, 1}
+	colors.text = {0.5, 0.5, 0.5}
