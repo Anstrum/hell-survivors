@@ -90,4 +90,5 @@ colors = {}
 	
 	-- game --
 	colors.mapBackground = {0.1, 0.1, 0.4, 1}
+	colors.cursor = {0.8, 0.8, 0.8, 1}
 	colors.fog = {1, 1, 1, 0.3}
