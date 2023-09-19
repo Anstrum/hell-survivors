@@ -35,7 +35,7 @@ end
 ]]
 function cursor.draw()
     cursor.drawCanva()
-    colors.set(colors.white)
+    colors.set(colors.white, 1)
     love.graphics.draw(cursor.canvas, screen.width / 2, screen.height / 2, cursor.angle, 1, 1, cursor.canvas:getWidth() / 2, cursor.canvas:getHeight() / 2)
 end 
 
