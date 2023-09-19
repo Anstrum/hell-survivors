@@ -82,7 +82,12 @@ colors = {}
 	colors.white = {1, 1, 1, 1}
 	colors.black = {0, 0, 0, 1}
 	
+	-- main menu --
 	colors.log = {0, 1, 0.8}
 	colors.title = {0.8, 0.8, 0.8, 1}
 	colors.menuBackground = {0.0, 0.0, 0.3, 1}
 	colors.text = {0.5, 0.5, 0.5}
+	
+	-- game --
+	colors.mapBackground = {0.1, 0.1, 0.4, 1}
+	colors.fog = {1, 1, 1, 0.3}

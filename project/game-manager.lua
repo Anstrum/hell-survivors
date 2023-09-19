@@ -1,6 +1,7 @@
 gameManager = {}
 
 	local menu = require("project/menu/menu")
+	local game = require("project/game/game")
 
 	gameManager.gameState = nil
 
@@ -15,7 +16,7 @@ gameManager = {}
 			menu.load()
 		end
 		if gameManager.gameState == "game" then
-			--game.load()
+			game.load()
 		end
 	end
 
@@ -25,7 +26,7 @@ gameManager = {}
 			menu.update(dt)
 		end
 		if gameManager.gameState == "game" then
-			--game.update(dt)
+			game.update(dt)
 		end
 	end
 
@@ -35,7 +36,7 @@ gameManager = {}
 			menu.keypressed(key)
 		end
 		if gameManager.gameState == "game" then
-			--game.keypressed(key)
+			game.keypressed(key)
 		end
 	end
 
@@ -49,7 +50,7 @@ gameManager = {}
 			menu.draw()
 		end
 		if gameManager.gameState == "game" then
-			--game.draw()
+			game.draw()
 		end
 	end
 
@@ -62,6 +63,6 @@ gameManager = {}
 
 	function gameManager.goToMenu()
 		gameManager.gameState = "menu"
-		--game.unload()
+		game.unload()
 		gameManager.load()
 	end
