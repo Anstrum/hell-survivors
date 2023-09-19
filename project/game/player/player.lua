@@ -1,23 +1,22 @@
 local player = {}
 
-    player.x = 0
-    player.y = 0
+
+    player.controller = require("project/game/player/player-controller")
+    player.sprite = require("project/game/player/player-sprite")
+    player.ui = require("project/game/player/player-ui")
 
 function player.load()
-    player.x = screen.width / 2
-    player.y = screen.height / 2
-    player.cursor.load()
+    player.controller.load()
+    player.sprite.load()
 end
 
 function player.update(dt)
-    player.cursor.update(dt, player.x, player.y)
+    player.controller.update(dt)
+    player.sprite.update(dt, player.controller.x, player.controller.y)
 end
 
 function player.draw()
-    player.cursor.draw(screen.width / 2, screen.height / 2)
-end
-
-function player.createCursor()
+    player.sprite.draw(player.controller.x, player.controller.y)
 end
 
 

@@ -11,7 +11,7 @@ function background.load(radius, maxAlpha)
 end
 
 
-function background.draw(radius)
+function background.draw(radius, playerX, playerY)
     -- displaying the background --
     colors.set(colors.mapBackground)
     love.graphics.circle("fill", screen.width / 2, screen.height / 2, background.baseRadius * 2)
@@ -22,22 +22,22 @@ function background.draw(radius)
 
     -- then displaying gain the map to remove the fog in the radius --
     colors.set(colors.mapBackground)
-    love.graphics.circle("fill", screen.width / 2, screen.height / 2, radius)
+    love.graphics.circle("fill", screen.width / 2 - playerX, screen.height / 2 - playerY, radius)
 
     -- then displaying the deco --
     for i = 1, #background.stars do
         local item = background.stars[i]
         colors.set(item.color)
-        love.graphics.circle("fill", item.x, item.y, item.radius)
+        love.graphics.circle("fill", item.x - playerX, item.y - playerY, item.radius)
     end
     for i = 1, #background.bubbles do
         local item = background.bubbles[i]
         colors.set(item.color)
-        love.graphics.circle("fill", item.x, item.y, item.radius)
+        love.graphics.circle("fill", item.x - playerX, item.y - playerY, item.radius)
         colors.set(item.color, 0.5)
-        love.graphics.circle("line", item.x, item.y, item.radius - 1)
-        love.graphics.circle("line", item.x, item.y, item.radius)
-        love.graphics.circle("line", item.x, item.y, item.radius + 1)
+        love.graphics.circle("line", item.x - playerX, item.y - playerY, item.radius - 1)
+        love.graphics.circle("line", item.x - playerX, item.y - playerY, item.radius)
+        love.graphics.circle("line", item.x - playerX, item.y - playerY, item.radius + 1)
     end
 end
 
@@ -62,7 +62,7 @@ function background.generateDeco(count)
         -- the x and y values can be negative because the map start at x0 y0 and can go to x-radius y-radius --
         item.x = math.random(0, background.baseRadius * 4) - background.baseRadius * 2
         item.y = math.random(0, background.baseRadius * 4) - background.baseRadius * 2
-        item.radius = math.random(50, 100)
+        item.radius = math.random(100, 400)
         item.color = {math.random(0, 127) / 255, math.random(0, 127) / 255, math.random(127, 255) / 255, math.random(20, 64) / 255}
         table.insert(background.bubbles, item)
     end

@@ -6,7 +6,7 @@ bounds.displayBounds = true
 
 function bounds.load(radius, decreaseSpeed)
     bounds.radius = radius or 1000
-    bounds.decreaseSpeed = decreaseSpeed or 100
+    bounds.decreaseSpeed = decreaseSpeed or radius / 10 or 100
 end
 
 function bounds.update(dt)
@@ -17,14 +17,14 @@ function bounds.update(dt)
     end
 end
 
-function bounds.draw()
+function bounds.draw(playerX, playerY)
     if bounds.displayBounds then
         colors.set(colors.red, 0.9)
-        love.graphics.circle("line", screen.width / 2, screen.height / 2, bounds.radius - 2)
-        love.graphics.circle("line", screen.width / 2, screen.height / 2, bounds.radius - 1)
-        love.graphics.circle("line", screen.width / 2, screen.height / 2, bounds.radius)
-        love.graphics.circle("line", screen.width / 2, screen.height / 2, bounds.radius + 1)
-        love.graphics.circle("line", screen.width / 2, screen.height / 2, bounds.radius + 2)
+        love.graphics.circle("line", screen.width / 2 - playerX, screen.height / 2 - playerY, bounds.radius - 2)
+        love.graphics.circle("line", screen.width / 2 - playerX, screen.height / 2 - playerY, bounds.radius - 1)
+        love.graphics.circle("line", screen.width / 2 - playerX, screen.height / 2 - playerY, bounds.radius)
+        love.graphics.circle("line", screen.width / 2 - playerX, screen.height / 2 - playerY, bounds.radius + 1)
+        love.graphics.circle("line", screen.width / 2 - playerX, screen.height / 2 - playerY, bounds.radius + 2)
     end
 end
 

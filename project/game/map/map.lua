@@ -14,9 +14,9 @@ function map.update(dt)
     map.bounds.update(dt)
 end
 
-function map.draw()
-    map.background.draw(map.bounds.radius)
-    map.bounds.draw()
+function map.draw(playerX, playerY)
+    map.background.draw(map.bounds.radius, playerX, playerY)
+    map.bounds.draw(playerX, playerY)
 end
 
 function map.unload()
