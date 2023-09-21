@@ -27,17 +27,23 @@ function background.draw(radius, playerX, playerY)
     -- then displaying the deco --
     for i = 1, #background.stars do
         local item = background.stars[i]
-        colors.set(item.color)
-        love.graphics.circle("fill", item.x - playerX, item.y - playerY, item.radius)
+
+        if not (item.x - playerX * 1.5 > 2 * screen.width or item.y - playerY * 1.5 > 2 * screen.height) then
+            colors.set(item.color)
+            love.graphics.circle("fill", item.x - playerX * 1.5, item.y - playerY * 1.5, item.radius)
+        end
     end
     for i = 1, #background.bubbles do
         local item = background.bubbles[i]
-        colors.set(item.color)
-        love.graphics.circle("fill", item.x - playerX, item.y - playerY, item.radius)
-        colors.set(item.color, 0.5)
-        love.graphics.circle("line", item.x - playerX, item.y - playerY, item.radius - 1)
-        love.graphics.circle("line", item.x - playerX, item.y - playerY, item.radius)
-        love.graphics.circle("line", item.x - playerX, item.y - playerY, item.radius + 1)
+
+        if not (item.x - playerX > 2 * screen.width or item.y - playerY > 2 * screen.height) then
+            colors.set(item.color)
+            love.graphics.circle("fill", item.x - playerX, item.y - playerY, item.radius)
+            colors.set(item.color, 0.5)
+            love.graphics.circle("line", item.x - playerX, item.y - playerY, item.radius - 1)
+            love.graphics.circle("line", item.x - playerX, item.y - playerY, item.radius)
+            love.graphics.circle("line", item.x - playerX, item.y - playerY, item.radius + 1)
+        end
     end
 end
 
@@ -45,7 +51,7 @@ function background.generateDeco(count)
 
     math.randomseed(os.time())
 
-    while #background.stars < count / 2 do
+    while #background.stars < count *2 do
         local item = {}
         -- the x and y values can be negative because the map start at x0 y0 and can go to x-radius y-radius --
         item.x = math.random(0, background.baseRadius * 4) - background.baseRadius * 2
@@ -57,7 +63,7 @@ function background.generateDeco(count)
 
     math.randomseed(os.time() * 2)
 
-    while #background.bubbles < count / 10 do
+    while #background.bubbles < count / 4 do
         local item = {}
         -- the x and y values can be negative because the map start at x0 y0 and can go to x-radius y-radius --
         item.x = math.random(0, background.baseRadius * 4) - background.baseRadius * 2
