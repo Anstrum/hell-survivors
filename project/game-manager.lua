@@ -1,7 +1,10 @@
 gameManager = {}
 
+	local data = require("project/data/data")
 	local menu = require("project/menu/menu")
 	local game = require("project/game/game")
+
+
 
 	gameManager.gameState = nil
 

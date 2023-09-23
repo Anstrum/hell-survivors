@@ -23,6 +23,7 @@ function game.draw()
 end
 
 function game.unload()
+    data.unload()
     game.map.unload()
     game.player.unload()
 end

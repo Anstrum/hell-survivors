@@ -1,48 +1,21 @@
 local cursor = {}
 
-cursor.canvas = nil 
-cursor.subtractionColor = {}
-cursor.angle = nil
-
 
 function cursor.load()
-    cursor.canvas = love.graphics.newCanvas(70, 70)
-    cursor.subtractionColor = {1, 1, 0, 1}
-    cursor.angle = 0
+    data.player.sprite.canvas = love.graphics.newCanvas(70, 70)
+    data.player.controller.angle = 0
 end
 
 
-
---[[
-        this update function will calculate the rotation of the cursor in function of the mouse position
-        it will use atan2 that will return the angle between the x axis and the vector (dx, dy)
-
-        NOTE: I still don't understand this function :')
-]]
-function cursor.update(dt)
-    -- now we calculate the rotation of the cursor in function of the mouse position --
-    local dx = mouse.x - screen.width / 2  -- différence en x entre la souris et le centre de l'écran
-    local dy = mouse.y - screen.height / 2  -- différence en y entre la souris et le centre de l'écran
-
-    cursor.angle = math.atan2(dy, dx) + math.pi / 2
-end
-
-
-
---[[    
-        this draw function will draw the cursor on the screen
-        it will use a canvas to draw the cursor
-]]
 function cursor.draw()
     cursor.drawCanva()
     colors.set(colors.white, 1)
-    love.graphics.draw(cursor.canvas, screen.width / 2, screen.height / 2, cursor.angle, 1, 1, cursor.canvas:getWidth() / 2, cursor.canvas:getHeight() / 2)
+    love.graphics.draw(data.player.sprite.canvas, screen.width / 2, screen.height / 2, data.player.controller.angle, 1, 1, data.player.sprite.canvas:getWidth() / 2, data.player.sprite.canvas:getHeight() / 2)
 end 
 
 
-
 function cursor.unload()
-    cursor.canvas = nil
+    data.player.sprite.canvas = nil
 end
 
 
@@ -54,7 +27,7 @@ end
         to obtain the color of the background of the map
 ]]
 function cursor.drawCanva()
-    love.graphics.setCanvas(cursor.canvas) -- création du canvas --
+    love.graphics.setCanvas(data.player.sprite.canvas) -- création du canvas --
     love.graphics.clear() -- on le vide au préalable --
 
     -- Dessiner la "pleine lune" sur le canvas à la couleur du curseur voulu --

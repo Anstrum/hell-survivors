@@ -12,11 +12,10 @@ end
 
 function player.update(dt)
     player.controller.update(dt)
-    player.sprite.update(dt, player.controller.x, player.controller.y)
 end
 
 function player.draw()
-    player.sprite.draw(player.controller.x, player.controller.y)
+    player.sprite.draw()
 end
 
 

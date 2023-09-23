@@ -1,28 +1,34 @@
 local controller = {}
 
-controller.x = nil
-controller.y = nil
-controller.speed = nil
-controller.speedMultiplicator = 1
+
 
 function controller.load()
-    controller.speed = 400
-    controller.x = 0
-    controller.y = 0
+    data.player.controller.speed = 400
+    data.player.controller.x = 0
+    data.player.controller.y = 0
 end
 
 function controller.update(dt)
+    -- now we calculate the rotation of the cursor in function of the mouse position --
+    local dx = mouse.x - screen.width / 2  -- différence en x entre la souris et le centre de l'écran
+    local dy = mouse.y - screen.height / 2  -- différence en y entre la souris et le centre de l'écran
+
+    data.player.controller.angle = math.atan2(dy, dx) + math.pi / 2
+
+
+
+    -- Now we update the player position --
     if love.keyboard.isDown("z") then
-        controller.y = controller.y - controller.speed * controller.speedMultiplicator * dt
+        data.player.controller.y = data.player.controller.y - data.player.controller.speed * data.player.controller.speedMultiplicator * dt
     end
     if love.keyboard.isDown("s") then
-        controller.y = controller.y + controller.speed * controller.speedMultiplicator * dt
+        data.player.controller.y = data.player.controller.y + data.player.controller.speed * data.player.controller.speedMultiplicator * dt
     end
     if love.keyboard.isDown("q") then
-        controller.x = controller.x - controller.speed * controller.speedMultiplicator * dt
+        data.player.controller.x = data.player.controller.x - data.player.controller.speed * data.player.controller.speedMultiplicator * dt
     end
     if love.keyboard.isDown("d") then
-        controller.x = controller.x + controller.speed * controller.speedMultiplicator * dt
+        data.player.controller.x = data.player.controller.x + data.player.controller.speed * data.player.controller.speedMultiplicator * dt
     end
 end
 
@@ -43,8 +49,6 @@ function controller.mousereleased(x, y, button)
 end
 
 function controller.unload()
-    controller.x = nil
-    controller.y = nil
 end
 
 --[[
@@ -53,7 +57,7 @@ end
         calling controller.setMultiplicator() will set the multiplicator to 1
 ]]
 function controller.setMultiplicator(multiplicator)
-    controller.speedMultiplicator = multiplicator or 1
+    data.player.data.player.controller.speedMultiplicator = multiplicator or 1
 end
 
 return controller

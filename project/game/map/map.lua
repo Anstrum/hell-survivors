@@ -7,7 +7,7 @@ map.bounds = require("project/game/map/map-bounds")
 
 function map.load(radius, decreaseSpeed)
     map.bounds.load(radius, decreaseSpeed)
-    map.background.load(radius)
+    map.background.load()
 end
 
 function map.update(dt)
@@ -15,7 +15,7 @@ function map.update(dt)
 end
 
 function map.draw(playerX, playerY)
-    map.background.draw(map.bounds.radius, playerX, playerY)
+    map.background.draw(playerX, playerY)
     map.bounds.draw(playerX, playerY)
 end
 
