@@ -79,6 +79,7 @@ colors = {}
 	colors.red = {1, 0, 0, 1}
 	colors.green = {0, 1, 0, 1}
 	colors.blue = {0, 0, 1, 1}
+	colors.orange = {1, 0.5, 0, 1}
 	colors.white = {1, 1, 1, 1}
 	colors.black = {0, 0, 0, 1}
 	

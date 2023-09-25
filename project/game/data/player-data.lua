@@ -11,12 +11,17 @@ data.x = nil
 data.y = nil
 data.speed = nil
 data.speedMultiplicator = nil
-data.isDodging = nil
-data.dodgeTimer = nil
-data.dodgeDuration = nil
-data.dodgeCD = nil
-data.dodgeCDTimer = nil
 
+
+data.isDodging = nil
+data.dodgeAmount = nil
+data.dodgeMaxAmount = nil
+
+-- dodge recharge--
+-- recharge is delayed by 1s when the player is dodging --
+data.dodgeRechargeTimer = nil -- the remaining time to begin the recharge --
+data.dodgeRechargeCD = nil -- the recharge CD --
+data.dodgeRechargeMultiplicator = nil
 
     -- player-sprite --
 data.canvas = nil

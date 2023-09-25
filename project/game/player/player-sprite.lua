@@ -1,7 +1,5 @@
 local cursor = {}
 
-data.player.canvas = nil
-data.player.angle = nil
 
 
 function cursor.load()
@@ -33,7 +31,11 @@ end
 ]]
 function cursor.draw()
     cursor.drawCanva()
-    colors.set(colors.white, 1)
+    if data.player.isDodging then
+        colors.set(colors.white, 0.5)
+    else
+        colors.set(colors.white, 1)
+    end
     love.graphics.draw(data.player.canvas, screen.width / 2, screen.height / 2, data.player.angle, 1, 1, data.player.canvas:getWidth() / 2, data.player.canvas:getHeight() / 2)
 end 
 

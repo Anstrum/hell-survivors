@@ -1,7 +1,7 @@
 local menu = {}
 
 	menu.deco = require("project/menu/menu-deco")
-	menu.ui = require("project/menu/menu-ui")
+	menu.ui = require("project/menu/menu-controller")
 
 	function menu.load()
 		menu.deco.load()

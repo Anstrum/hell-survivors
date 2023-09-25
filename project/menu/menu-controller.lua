@@ -1,33 +1,33 @@
-local ui = {}
+local controller = {}
 
-function ui.load()
+function controller.load()
     -- nothing here --
 end
 
-function ui.unload()
+function controller.unload()
     -- nothing here --
 end
 
-function ui.update(dt)
+function controller.update(dt)
     -- nothing here --
 end
 
-function ui.keypressed(key)
+function controller.keypressed(key)
     if key == "escape" then
         logger.addLog("quit asked from menu", false)
-        love.event.quit()
+        love.event.qcontrollert()
     end
     if key == "space" or key == "return" then
         gameManager.startGame()
     end
 end
 
-function ui.mousepressed(x, y, click)
+function controller.mousepressed(x, y, click)
     -- nothing here --
 end
 
-function ui.draw()
+function controller.draw()
     -- nothing here --
 end
 
-return ui
+return controller
