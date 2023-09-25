@@ -6,6 +6,15 @@ function controller.load()
     data.player.x = 0
     data.player.y = 0
     data.player.speedMultiplicator = 1
+<<<<<<< Updated upstream
+=======
+
+    data.player.isDodging = false
+    data.player.dodgeTimer = 0
+    data.player.dodgeDuration = 0.3
+    data.player.dodgeCD = 0
+    data.player.dodgeCDTimer = 1
+>>>>>>> Stashed changes
 end
 
 function controller.update(dt)
@@ -29,6 +38,28 @@ function controller.update(dt)
     end
     if love.keyboard.isDown("d") then
         data.player.x = data.player.x + data.player.speed * data.player.speedMultiplicator * dt
+<<<<<<< Updated upstream
+=======
+    end
+
+    if data.player.dodgeCD > 0 then
+        data.player.dodgeCD = data.player.dodgeCD - dt
+        if data.player.dodgeCD < 0 then
+            data.player.dodgeCD = 0
+        end
+    else
+    if love.keyboard.isDown("lshift") or love.keyboard.isDown("space") or love.keyboard.isDown("lctrl") then
+        if not data.player.isDodging then
+            data.player.isDodging = true
+            data.player.dodgeTimer = data.player.dodgeDuration
+        end
+    else
+
+    end
+
+
+        data.player.speedMultiplicator = 1
+>>>>>>> Stashed changes
     end
 end
 
@@ -49,6 +80,11 @@ function controller.mousereleased(x, y, button)
 end
 
 function controller.unload()
+<<<<<<< Updated upstream
+=======
+    data.player.x = nil
+    data.player.y = nil
+>>>>>>> Stashed changes
 end
 
 --[[
@@ -57,7 +93,11 @@ end
         calling controller.setMultiplicator() will set the multiplicator to 1
 ]]
 function controller.setMultiplicator(multiplicator)
+<<<<<<< Updated upstream
     data.player.data.player.speedMultiplicator = multiplicator or 1
+=======
+    data.player.speedMultiplicator = multiplicator or 1
+>>>>>>> Stashed changes
 end
 
 return controller
