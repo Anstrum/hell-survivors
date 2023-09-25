@@ -16,6 +16,17 @@ function player.update(dt)
     player.ui.update(dt)
 end
 
+function player.keypressed(key)
+end
+
+function player.mousepressed(x, y, key)
+    player.controller.mousepressed(x, y, key)
+end
+
+function player.mousereleased(x, y, key)
+    player.controller.mousereleased(x, y, key)
+end
+
 function player.draw()
     player.sprite.draw()
     player.ui.draw()

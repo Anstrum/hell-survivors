@@ -45,8 +45,18 @@ gameManager = {}
 
 
 	function gameManager.mousepressed(x, y, key)
+		if gameManager.gameState == "game" then
+			game.mousepressed(x, y, key)
+		end
 	end
 
+
+	function gameManager.mousereleased(x, y, key)
+		if gameManager.gameState == "game" then
+			game.mousereleased(x, y, key)
+		end
+	end
+	
 
 	function gameManager.draw()
 		if gameManager.gameState == "menu" then

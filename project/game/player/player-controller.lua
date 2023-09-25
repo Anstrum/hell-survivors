@@ -12,6 +12,25 @@ function controller.load()
     data.player.dodgeRechargeTimer = 0
     data.player.dodgeRechargeCD = 1
     data.player.dodgeRechargeMultiplicator = 1
+
+    data.player.isCharging = false
+    data.player.attackCharge = 0
+    data.player.attackMaxCharge = 1
+    data.player.attackChargeMultiplicator = 1
+
+    data.player.charge = {}
+
+    data.player.charge[1] = {}
+    data.player.charge[1].chargeFactor = 0.125
+    data.player.charge[1].speedReduction = 0.8
+
+    data.player.charge[2] = {}
+    data.player.charge[2].chargeFactor = 0.25
+    data.player.charge[2].speedReduction = 0.6
+
+    data.player.charge[3] = {}
+    data.player.charge[3].chargeFactor = 0.75
+    data.player.charge[3].speedReduction = 0.3
 end
 
 function controller.update(dt)
@@ -38,6 +57,39 @@ function controller.update(dt)
     end
 
 
+    --[[
+        managing the attack system
+        adding the charge amount if the attack button is pressed. the attack charge has 3 levels, 
+        the first level can be released instantly and will charge a little ball with low speed and very low damage.
+        the second level will charge a same size ball with more speed and more damage.
+        the third level will charge a bigger ball with more speed and a lot of damage.
+    ]]
+
+    -- managing the attack charge --
+    if data.player.isCharging then
+        if data.player.attackCharge < data.player.attackMaxCharge then
+            data.player.attackCharge = data.player.attackCharge + 1 * dt * data.player.attackChargeMultiplicator
+            if data.player.attackCharge > data.player.attackMaxCharge then
+                data.player.attackCharge = data.player.attackMaxCharge
+            end
+        end
+        if data.player.attackCharge >= data.player.charge[1].chargeFactor * data.player.attackMaxCharge then
+            controller.setMultiplicator(data.player.charge[1].speedReduction)
+        end
+        if data.player.attackCharge >= data.player.charge[2].chargeFactor * data.player.attackMaxCharge then
+            controller.setMultiplicator(data.player.charge[2].speedReduction)
+        end
+        if data.player.attackCharge >= data.player.charge[3].chargeFactor * data.player.attackMaxCharge then
+            controller.setMultiplicator(data.player.charge[3].speedReduction)
+        end
+    else
+        controller.setMultiplicator()
+        data.player.attackCharge = data.player.attackCharge - 1 * dt * data.player.attackChargeMultiplicator
+        if data.player.attackCharge < 0 then
+            data.player.attackCharge = 0
+        end
+    end
+    
 
     --[[
         the dodge is a bit special, if the player is pressing the dodge key with a dodge amount > 0
@@ -48,6 +100,7 @@ function controller.update(dt)
         the player can choose to dodge for the whole amount or not, just by pressing or releasing one of the dodge key.
     ]]
 
+    -- managing the dodge recharge --
     if data.player.dodgeRechargeTimer > 0 then
         data.player.dodgeRechargeTimer = data.player.dodgeRechargeTimer - dt
         if data.player.dodgeRechargeTimer < 0 then
@@ -79,18 +132,30 @@ end
 
 function controller.mousepressed(x, y, button)
     if button == 1 then
-        -- left click is pressed (charge attack) --
+        -- left click is pressed (launch attack) --
+        if data.player.attackCharge == 0 then
+            data.player.isCharging = true
+        end
     end
     if button == 2 then
-        -- right click is pressed (cancel attack) --
+        if data.player.isCharging then
+            data.player.isCharging = false
+            data.player.attackCharge = data.player.attackCharge / 2
+        end
     end
 end
 
 function controller.mousereleased(x, y, button)
     if button == 1 then
         -- left click is released (launch attack) --
+        if data.player.isCharging then
+            data.player.isCharging = false
+            if data.player.attackCharge == data.player.attackMaxCharge then
+                data.player.attackCharge = data.player.attackMaxCharge / 2
+            end
+            -- generate the attack --
+        end
     end
-
 end
 
 function controller.unload()

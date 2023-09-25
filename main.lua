@@ -33,6 +33,10 @@ function love.mousepressed(x, y, click)
 	gameManager.mousepressed(x, y, click)
 end
 
+function love.mousereleased(x, y, click)
+	gameManager.mousereleased(x, y, click)
+end
+
 function love.draw()
 	colors.set(colors.white)
 	gameManager.draw()

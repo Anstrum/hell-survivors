@@ -16,6 +16,14 @@ end
 function game.keypressed(key)
 end
 
+function game.mousepressed(x, y, key)
+    game.player.mousepressed(x, y, key)
+end
+
+function game.mousereleased(x, y, key)
+    game.player.mousereleased(x, y, key)
+end
+
 function game.draw()
     love.graphics.setBlendMode("alpha")
     game.map.draw(game.player.controller.x, game.player.controller.y)
