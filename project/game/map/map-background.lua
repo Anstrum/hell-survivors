@@ -18,27 +18,27 @@ function background.draw()
 
     -- then displaying gain the map to remove the fog in the radius --
     colors.set(colors.mapBackground)
-    love.graphics.circle("fill", screen.width / 2 - data.player.controller.x, screen.height / 2 - data.player.controller.y, data.map.bounds.radius)
+    love.graphics.circle("fill", screen.width / 2 - data.player.x, screen.height / 2 - data.player.y, data.map.bounds.radius)
 
     -- then displaying the deco --
     for i = 1, #data.map.background.stars do
         local item = data.map.background.stars[i]
 
-        if not (item.x - data.player.controller.x * 1.5 > 2 * screen.width or item.y - data.player.controller.y * 1.5 > 2 * screen.height) then
+        if not (item.x - data.player.x * 1.5 > 2 * screen.width or item.y - data.player.y * 1.5 > 2 * screen.height) then
             colors.set(item.color)
-            love.graphics.circle("fill", item.x - data.player.controller.x * 1.5, item.y - data.player.controller.y * 1.5, item.radius)
+            love.graphics.circle("fill", item.x - data.player.x * 1.5, item.y - data.player.y * 1.5, item.radius)
         end
     end
     for i = 1, #data.map.background.bubbles do
         local item = data.map.background.bubbles[i]
 
-        if not (item.x - data.player.controller.x > 2 * screen.width or item.y - data.player.controller.y > 2 * screen.height) then
+        if not (item.x - data.player.x > 2 * screen.width or item.y - data.player.y > 2 * screen.height) then
             colors.set(item.color)
-            love.graphics.circle("fill", item.x - data.player.controller.x, item.y - data.player.controller.y, item.radius)
+            love.graphics.circle("fill", item.x - data.player.x, item.y - data.player.y, item.radius)
             colors.set(item.color, 0.5)
-            love.graphics.circle("line", item.x - data.player.controller.x, item.y - data.player.controller.y, item.radius - 1)
-            love.graphics.circle("line", item.x - data.player.controller.x, item.y - data.player.controller.y, item.radius)
-            love.graphics.circle("line", item.x - data.player.controller.x, item.y - data.player.controller.y, item.radius + 1)
+            love.graphics.circle("line", item.x - data.player.x, item.y - data.player.y, item.radius - 1)
+            love.graphics.circle("line", item.x - data.player.x, item.y - data.player.y, item.radius)
+            love.graphics.circle("line", item.x - data.player.x, item.y - data.player.y, item.radius + 1)
         end
     end
 end

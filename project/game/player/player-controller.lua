@@ -1,11 +1,11 @@
 local controller = {}
 
 
-
 function controller.load()
-    data.player.controller.speed = 400
-    data.player.controller.x = 0
-    data.player.controller.y = 0
+    data.player.speed = 400
+    data.player.x = 0
+    data.player.y = 0
+    data.player.speedMultiplicator = 1
 end
 
 function controller.update(dt)
@@ -13,22 +13,22 @@ function controller.update(dt)
     local dx = mouse.x - screen.width / 2  -- différence en x entre la souris et le centre de l'écran
     local dy = mouse.y - screen.height / 2  -- différence en y entre la souris et le centre de l'écran
 
-    data.player.controller.angle = math.atan2(dy, dx) + math.pi / 2
+    data.player.angle = math.atan2(dy, dx) + math.pi / 2
 
 
 
     -- Now we update the player position --
     if love.keyboard.isDown("z") then
-        data.player.controller.y = data.player.controller.y - data.player.controller.speed * data.player.controller.speedMultiplicator * dt
+        data.player.y = data.player.y - data.player.speed * data.player.speedMultiplicator * dt
     end
     if love.keyboard.isDown("s") then
-        data.player.controller.y = data.player.controller.y + data.player.controller.speed * data.player.controller.speedMultiplicator * dt
+        data.player.y = data.player.y + data.player.speed * data.player.speedMultiplicator * dt
     end
     if love.keyboard.isDown("q") then
-        data.player.controller.x = data.player.controller.x - data.player.controller.speed * data.player.controller.speedMultiplicator * dt
+        data.player.x = data.player.x - data.player.speed * data.player.speedMultiplicator * dt
     end
     if love.keyboard.isDown("d") then
-        data.player.controller.x = data.player.controller.x + data.player.controller.speed * data.player.controller.speedMultiplicator * dt
+        data.player.x = data.player.x + data.player.speed * data.player.speedMultiplicator * dt
     end
 end
 
@@ -57,7 +57,7 @@ end
         calling controller.setMultiplicator() will set the multiplicator to 1
 ]]
 function controller.setMultiplicator(multiplicator)
-    data.player.data.player.controller.speedMultiplicator = multiplicator or 1
+    data.player.data.player.speedMultiplicator = multiplicator or 1
 end
 
 return controller

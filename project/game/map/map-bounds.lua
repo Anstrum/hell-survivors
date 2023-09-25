@@ -16,11 +16,11 @@ end
 function bounds.draw()
     if data.map.bounds.displayBounds then
         colors.set(colors.red, 0.9)
-        love.graphics.circle("line", screen.width / 2 - data.player.controller.x, screen.height / 2 - data.player.controller.y, data.map.bounds.radius - 2)
-        love.graphics.circle("line", screen.width / 2 - data.player.controller.x, screen.height / 2 - data.player.controller.y, data.map.bounds.radius - 1)
-        love.graphics.circle("line", screen.width / 2 - data.player.controller.x, screen.height / 2 - data.player.controller.y, data.map.bounds.radius)
-        love.graphics.circle("line", screen.width / 2 - data.player.controller.x, screen.height / 2 - data.player.controller.y, data.map.bounds.radius + 1)
-        love.graphics.circle("line", screen.width / 2 - data.player.controller.x, screen.height / 2 - data.player.controller.y, data.map.bounds.radius + 2)
+        love.graphics.circle("line", screen.width / 2 - data.player.x, screen.height / 2 - data.player.y, data.map.bounds.radius - 2)
+        love.graphics.circle("line", screen.width / 2 - data.player.x, screen.height / 2 - data.player.y, data.map.bounds.radius - 1)
+        love.graphics.circle("line", screen.width / 2 - data.player.x, screen.height / 2 - data.player.y, data.map.bounds.radius)
+        love.graphics.circle("line", screen.width / 2 - data.player.x, screen.height / 2 - data.player.y, data.map.bounds.radius + 1)
+        love.graphics.circle("line", screen.width / 2 - data.player.x, screen.height / 2 - data.player.y, data.map.bounds.radius + 2)
     end
 end
 
